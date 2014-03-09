@@ -19,30 +19,36 @@ import java.util.Scanner;
  */
 public class Reader 
 {
-    public static String initialRead() throws FileNotFoundException 
+    public static String initialRead()
     {
         //Z means: "The end of the input but for the final terminator, if any"
-        String temp;    
-        String output = new Scanner(new File("file.txt")).useDelimiter("\\Z").next();
-        temp="" + output;
+        String temp = null;    
+        try 
+        {
+            String output = new Scanner(new File("file.txt")).useDelimiter("\\Z").next();
+            temp="" + output;
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
         return temp;
+        
     }
 	    
 	    
-    public void readAll() throws FileNotFoundException
+    public void readAll()
     {
         String temp;
         temp = initialRead();
         System.out.println(temp);
     }
 
-    public void readDay( String day) throws FileNotFoundException
+    public void readDay( String day) 
     {
         String temp;
         int i;
         temp = initialRead();
         String perLine [] = temp.split("\n");
-        //System.out.println(perLine[0]);
         for(i=0;i<perLine.length;i++)
         {
             if(perLine[i].indexOf(day) != -1)
@@ -51,6 +57,8 @@ public class Reader
             }
         }
     }
+
+
 }
 
   
