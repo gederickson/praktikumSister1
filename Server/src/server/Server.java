@@ -6,7 +6,6 @@
 
 package server;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.String;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -24,7 +23,8 @@ public class Server {
     public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
         Reader file = new Reader();
-        file.bacaHari("Kamis");
+        file.readDay("Selasa");
+ 
 	}
     }
     

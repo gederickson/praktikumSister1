@@ -6,7 +6,6 @@
 
 package server;
  
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,39 +19,38 @@ import java.util.Scanner;
  */
 public class Reader 
 {
-public static String initialRead() throws FileNotFoundException {
-     //Z means: "The end of the input but for the final terminator, if any"
-    String temp;    
-    String output = new Scanner(new File("file.txt")).useDelimiter("\\Z").next();
+    public static String initialRead() throws FileNotFoundException 
+    {
+        //Z means: "The end of the input but for the final terminator, if any"
+        String temp;    
+        String output = new Scanner(new File("file.txt")).useDelimiter("\\Z").next();
         temp="" + output;
-    return temp;
+        return temp;
     }
-    
-    
- public void readAll() throws FileNotFoundException
+	    
+	    
+    public void readAll() throws FileNotFoundException
     {
         String temp;
         temp = initialRead();
         System.out.println(temp);
     }
 
- public void bacaHari( String hari) throws FileNotFoundException
+    public void readDay( String day) throws FileNotFoundException
     {
         String temp;
         int i;
         temp = initialRead();
-        String perBaris [] = temp.split("\n");
-        System.out.println(perBaris[0]);
-        for(i=0;i<perBaris.length;i++)
+        String perLine [] = temp.split("\n");
+        //System.out.println(perLine[0]);
+        for(i=0;i<perLine.length;i++)
         {
-            if(perBaris[i].indexOf(hari) != -1)
+            if(perLine[i].indexOf(day) != -1)
             {
-                System.out.println(perBaris[i]);
+                System.out.println(perLine[i]);
             }
         }
     }
-
-
-    
-    
 }
+
+  
