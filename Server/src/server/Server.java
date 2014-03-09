@@ -6,6 +6,10 @@
 
 package server;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  *
  * @author Rickson
@@ -18,7 +22,9 @@ public class Server {
     public static void main(String[] args) {
         // TODO code application logic here
         Reader file = new Reader();
-     
+        file.readAll();
+ 
+	}
     }
     
-}
+
