@@ -28,7 +28,8 @@ public class Reader
             String output = new Scanner(new File("file.txt")).useDelimiter("\\Z").next();
             temp="" + output;
         }
-        catch (IOException e) {
+        catch (IOException e) 
+        {
             e.printStackTrace();
         }
         return temp;
