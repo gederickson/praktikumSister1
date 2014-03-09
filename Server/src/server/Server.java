@@ -21,6 +21,7 @@ public class Server {
     public static void main(String[] args) throws IOException {
         byte[] day = null;
         // TODO code application logic here
+<<<<<<< HEAD
         
         // Method to read all weather for the week
         Reader file = new Reader;
@@ -30,6 +31,10 @@ public class Server {
         file.readbyDay();
         
         
+=======
+        Reader file = new Reader();
+     
+>>>>>>> b8471f32521b68fd524710dfc6b6d5fe1d89b7a8
     }
     
 }
