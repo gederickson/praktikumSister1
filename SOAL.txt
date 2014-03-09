@@ -1,0 +1,17 @@
+Soal Praktikum 1 Sistem Terdistribusi
+No Cheating, Open All
+------------------------------------------------
+
+Buatlah sebuah aplikasi klien-server dengan bahasa Java atau Python dengan kelompok masing-masing.
+Server membaca sebuah file teks yang berisi data perkiraan cuaca di Surabaya sebagai berikut:
+
+Senin, 11 Maret 2014 - Hujan
+Selasa, 12 Maret 2014 - Cerah berawan
+Rabu, 13 Maret 2014 - Mendung
+Kamis, 14 Maret 2014 - Cerah
+Jumat, 15 Maret 2014 - Mendung
+
+Klien melakukan request ke server, server membaca file perkiraan cuaca dan mengirimkannya ke klien. Klien bisa melakukan request per hari atau langsung dari hari Senin-Jumat.
+Gunakan teknik object serialization dan server harus bisa melayani banyak klien dalam suatu waktu.
+Contoh-contoh program ada pada alamat https://github.com/studiawan/javaSocket
+https://github.com/studiawan/pythonSocket
