@@ -13,12 +13,12 @@ import java.io.Serializable;
  * @author MD Dia Agustya
  */
 public class Message implements Serializable {
-    private String message;
+    private final String message;
     
     public Message(String message) {
         this.message = message;
     }
-    
+
     public String getString() {
         return message;
     }

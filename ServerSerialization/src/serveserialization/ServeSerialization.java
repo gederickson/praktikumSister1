@@ -4,19 +4,21 @@
  * and open the template in the editor.
  */
 
-package server;
+package serveserialization;
 
+import messageserialization.Message;
 import java.net.*;
 import java.io.*;
 import java.io.IOException;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
 
 /**
  *
- * @author Rickson
- * @editor desta
+ * @author Rah Desta
  */
-public class Server {
+public class ServeSerialization {
 
     /**
      * @param args the command line arguments
@@ -28,7 +30,9 @@ public class Server {
              * variable initialization
              */
             ServerSocket serverSocket;            
-            Socket clientSocket;          
+            Socket clientSocket; 
+            ObjectInputStream inputStream;
+            ObjectOutputStream outputStream; 
             /*
              * create socket server, accept client, preparing input stream
              * receive message, and print to screen
@@ -43,18 +47,19 @@ public class Server {
             System.out.println("Listen: " + e.getMessage());
         }        
     }
+    
 }
 
 class Connection extends Thread {
-    DataInputStream inputStream;
-    DataOutputStream outputStream;
+    ObjectInputStream inputStream;
+    ObjectOutputStream outputStream;
     Socket clientSocket;
     
     public Connection(Socket client) {
         try {
             clientSocket = client;
-            inputStream = new DataInputStream(clientSocket.getInputStream());
-            outputStream = new DataOutputStream(clientSocket.getOutputStream());            
+            inputStream = new ObjectInputStream(clientSocket.getInputStream());
+            outputStream = new ObjectOutputStream(clientSocket.getOutputStream());   
             this.start();
         }
         catch(IOException ex) {
@@ -65,26 +70,30 @@ class Connection extends Thread {
     @Override
     public void run() {
         try {
+            Message message;
+            Message message2;
              /*
              * preparing output stream, send message back to client
              */
-            String message2, message;
-            inputStream = new DataInputStream(clientSocket.getInputStream());
-            message = inputStream.readUTF();
+
+            message = (Message) inputStream.readObject();
             
-                     
-            System.out.println("From client: " + message);
+            System.out.println("From client: " + message.getString());
             Reader file = new Reader();
-            if("all".equals(message) || "All".equals(message)){
+            /*if("all".equals(message) || "All".equals(message)){
+                
                 message2 = file.readAll();
-            }else{
-                message2 = file.readDay(message);
-            }  
-            outputStream = new DataOutputStream(clientSocket.getOutputStream());
-            outputStream.writeUTF(message2);                                      
+            }else{*/
+                String day;
+                day = message.getString(); 
+                System.out.println( file.readDay(day));
+                outputStream.writeObject(new Message(file.readDay(day)));
+            //}
         }
         catch(IOException ex) {
             System.out.println(ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
         }
         finally {
             try {
@@ -95,5 +104,3 @@ class Connection extends Thread {
         }
     }
 }
-    
-

@@ -7,3 +7,8 @@
 /Server/build/
 /Client/build/
 /MessageSerialization/nbproject/private/
+/serveSerialization/nbproject/private/
+/ServerSerialization/nbproject/private/
+/MessageSerialization/build/
+/ServerSerialization/build/
+/MessageSerialization/dist/

@@ -34,7 +34,6 @@ public class Client {
             */
             clientSocket = new Socket("localhost", 5111);
             outputStream = new DataOutputStream(clientSocket.getOutputStream());
-            //outputStream.writeUTF("Message GUEST");
             BufferedReader dataIn = new BufferedReader(new InputStreamReader(System.in));
             String name;
             System.out.print("Input hari: ");
