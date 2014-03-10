@@ -8,9 +8,9 @@ package server;
 
 import java.net.*;
 import java.io.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+//import java.io.BufferedReader;
+//import java.io.FileNotFoundException;
+//import java.io.FileReader;
 import java.io.IOException;
 
 /**
@@ -32,21 +32,66 @@ public class Server {
             Socket clientSocket;
             DataInputStream inputStream;
             DataOutputStream outputStream;
-            String message, message2;
+            //String message, message2;
                         
             /*
              * create socket server, accept client, preparing input stream
              * receive message, and print to screen
              */
             serverSocket = new ServerSocket(5111);
-            clientSocket = serverSocket.accept();
-            inputStream = new DataInputStream(clientSocket.getInputStream());
-            message = inputStream.readUTF();
-            System.out.println("From client: " + message);
+            while(true) {
+                clientSocket = serverSocket.accept();            
+                Connection c = new Connection(clientSocket); 
+                
+            }
+            
 
             /*
              * preparing output stream, send message back to client
              */
+            
+
+            /*
+             * close input stream, output stream
+             * close client socket and server socket
+             */
+            /*inputStream.close();
+            outputStream.close();
+            clientSocket.close();
+            serverSocket.close();*/
+        }
+        catch(IOException e) {
+            System.out.println("Listen: " + e.getMessage());
+        }        
+    }
+}
+
+class Connection extends Thread {
+    DataInputStream inputStream;
+    DataOutputStream outputStream;
+    Socket clientSocket;
+    
+    public Connection(Socket client) {
+        try {
+            clientSocket = client;
+            inputStream = new DataInputStream(clientSocket.getInputStream());
+            outputStream = new DataOutputStream(clientSocket.getOutputStream());            
+            this.start();
+        }
+        catch(IOException ex) {
+            System.out.println("IO: " + ex.getMessage());
+        }        
+    }
+    
+    @Override
+    public void run() {
+        try {
+            String message2, message;
+            inputStream = new DataInputStream(clientSocket.getInputStream());
+            message = inputStream.readUTF();
+            
+                     
+            System.out.println("From client: " + message);
             Reader file = new Reader();
             if("all".equals(message) || "All".equals(message)){
                 message2 = file.readAll();
@@ -55,20 +100,19 @@ public class Server {
             }
             
             outputStream = new DataOutputStream(clientSocket.getOutputStream());
-            outputStream.writeUTF(message2);
-
-            /*
-             * close input stream, output stream
-             * close client socket and server socket
-             */
-            inputStream.close();
-            outputStream.close();
-            clientSocket.close();
-            serverSocket.close();
+            outputStream.writeUTF(message2);                           
+            
         }
-        catch(IOException e) {
-            System.out.println("Listen: " + e.getMessage());
-        }        
+        catch(IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        finally {
+            try {
+                clientSocket.close();
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
     }
 }
     

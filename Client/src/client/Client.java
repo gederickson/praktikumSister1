@@ -36,7 +36,7 @@ public class Client {
             outputStream = new DataOutputStream(clientSocket.getOutputStream());
             //outputStream.writeUTF("Message GUEST");
             BufferedReader dataIn = new BufferedReader(new InputStreamReader(System.in));
-            String name="";
+            String name;
             System.out.print("Input hari: ");
             name = dataIn.readLine();
             outputStream.writeUTF(name);
@@ -51,10 +51,6 @@ public class Client {
         }
         catch(IOException e) {
             System.out.println("IO exception: " + e.getMessage());
-        }
-        
-        
-        
+        }   
     }
-    
 }
