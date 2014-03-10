@@ -8,6 +8,9 @@ package client;
 
 import java.io.*;
 import java.net.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  *
@@ -31,7 +34,12 @@ public class Client {
             */
             clientSocket = new Socket("localhost", 5111);
             outputStream = new DataOutputStream(clientSocket.getOutputStream());
-            outputStream.writeUTF("Message GUEST");
+            //outputStream.writeUTF("Message GUEST");
+            BufferedReader dataIn = new BufferedReader(new InputStreamReader(System.in));
+            String name="";
+            System.out.print("Input hari: ");
+            name = dataIn.readLine();
+            outputStream.writeUTF(name);
             
             /*
              * preparing data input stream, receive message from server, print
