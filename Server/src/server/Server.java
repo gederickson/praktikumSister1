@@ -32,7 +32,7 @@ public class Server {
             Socket clientSocket;
             DataInputStream inputStream;
             DataOutputStream outputStream;
-            String message;
+            String message, message2;
                         
             /*
              * create socket server, accept client, preparing input stream
@@ -47,12 +47,11 @@ public class Server {
             /*
              * preparing output stream, send message back to client
              */
-            Reader file = new Reader();
-            file.readDay(message);
-            System.out.println(message);
             
+            Reader file = new Reader();
+            message2 = file.readDay(message);
             outputStream = new DataOutputStream(clientSocket.getOutputStream());
-            outputStream.writeUTF(message);
+            outputStream.writeUTF(message2);
 
             /*
              * close input stream, output stream
@@ -66,10 +65,7 @@ public class Server {
         catch(IOException e) {
             System.out.println("Listen: " + e.getMessage());
         }        
-        
-        
-        
-	}
     }
+}
     
 

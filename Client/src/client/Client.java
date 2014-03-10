@@ -9,6 +9,7 @@ package client;
 import java.io.*;
 import java.net.*;
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -51,10 +52,6 @@ public class Client {
         }
         catch(IOException e) {
             System.out.println("IO exception: " + e.getMessage());
-        }
-        
-        
-        
-    }
-    
+        }        
+    }  
 }
