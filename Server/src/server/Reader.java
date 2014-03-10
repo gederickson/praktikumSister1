@@ -44,9 +44,9 @@ public class Reader
         System.out.println(temp);
     }
 
-    public String readDay( String day) 
+    public void readDay( String day) 
     {
-        String temp, hasil = null;
+        String temp;
         int i;
         temp = initialRead();
         String perLine [] = temp.split("\n");
@@ -54,12 +54,12 @@ public class Reader
         {
             if(perLine[i].indexOf(day) != -1)
             {
-                //System.out.println(perLine[i]);
-                hasil = perLine[i];
+                System.out.println(perLine[i]);
             }
         }
-        return hasil;
     }
+
+
 }
 
   
