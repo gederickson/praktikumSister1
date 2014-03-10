@@ -48,7 +48,11 @@ public class Server {
              * preparing output stream, send message back to client
              */
             Reader file = new Reader();
-            message2 = file.readDay(message);
+            if("all".equals(message)){
+                message2 = file.readAll();
+            }else{
+                message2 = file.readDay(message);
+            }
             
             outputStream = new DataOutputStream(clientSocket.getOutputStream());
             outputStream.writeUTF(message2);
@@ -65,10 +69,7 @@ public class Server {
         catch(IOException e) {
             System.out.println("Listen: " + e.getMessage());
         }        
-        
-        
-        
-	}
     }
+}
     
 

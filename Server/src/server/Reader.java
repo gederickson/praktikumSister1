@@ -37,11 +37,11 @@ public class Reader
     }
 	    
 	    
-    public void readAll()
+    public String readAll()
     {
-        String temp;
+        String temp = null;
         temp = initialRead();
-        System.out.println(temp);
+        return temp;
     }
 
     public String readDay( String day) 
