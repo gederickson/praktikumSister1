@@ -48,7 +48,7 @@ public class Server {
              * preparing output stream, send message back to client
              */
             Reader file = new Reader();
-            if("all".equals(message)){
+            if("all".equals(message) || "All".equals(message)){
                 message2 = file.readAll();
             }else{
                 message2 = file.readDay(message);
