@@ -80,15 +80,22 @@ class Connection extends Thread {
             
             System.out.println("From client: " + message.getString());
             Reader file = new Reader();
-            /*if("all".equals(message) || "All".equals(message)){
+            String allday;
+            allday = message.getString();
+            
+            if("all".equals(allday) || "All".equals(allday)){
+               
                 
-                message2 = file.readAll();
-            }else{*/
+               // System.out.println(file.readAll());
+                outputStream.writeObject(new Message(file.readAll()));
+               //message2 = file.readAll();
+            }else{
+            
                 String day;
                 day = message.getString(); 
                 System.out.println( file.readDay(day));
                 outputStream.writeObject(new Message(file.readDay(day)));
-            //}
+            }
         }
         catch(IOException ex) {
             System.out.println(ex.getMessage());

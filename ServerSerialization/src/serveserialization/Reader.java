@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 import messageserialization.Message;
-
+import java.io.*;
 /**
  *
  * @author Rickson
@@ -33,8 +33,8 @@ public class Reader
         return temp;
         
     }
-	    
-	    
+    
+   
     public String readAll()
     {
         String temp = null;
